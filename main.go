@@ -1,0 +1,29 @@
+package main
+
+import (
+	"fmt"
+	"github.com/gorilla/mux"
+	"log"
+	"net/http"
+	"time"
+)
+
+const baseUrl = "/"
+const defaultPort = "8080"
+
+func main() {
+	r := mux.NewRouter()
+	r.HandleFunc("/", indexHandler)
+	http.Handle(baseUrl, r)
+
+	fmt.Println("Starting API server...")
+
+	srv := &http.Server{
+		Handler:      r,
+		Addr:         "127.0.0.1:" + defaultPort,
+		WriteTimeout: 15 * time.Second,
+		ReadTimeout:  15 * time.Second,
+	}
+
+	log.Fatal(srv.ListenAndServe())
+}
