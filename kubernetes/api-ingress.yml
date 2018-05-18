@@ -1,11 +1,11 @@
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: nginx-ingress
+  name: api-ingress
   annotations:
     kubernetes.io/ingress.global-static-ip-name: "demo-ip"
 spec:
   backend:
-    serviceName: nginx-service
+    serviceName: api-service
     servicePort: 80
 
